@@ -7,9 +7,9 @@ findDotFiles() {
     done 
 }
 
-dir=~/dotfiles                    # dotfiles directory
+dir=~/dot 			  # dotfiles directory
 olddir=~/dotfiles_old             # old dotfiles backup directory
-files=$(findDotFiles)
+files=".vimrc .bashrc .bash_aliases"
 
 # create dotfiles_old in homedir
 echo "Creating $olddir for backup of any existing dotfiles in ~"
@@ -24,7 +24,7 @@ echo "...done"
 # move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks 
 for file in $files; do
     echo "Moving any existing dotfiles from ~ to $olddir"
-    echo ~/$file ~/dotfiles_old/
+    mv ~/$file ~/dotfiles_old/
     echo "Creating symlink to $file in home directory."
     ln -s $dir/$file ~/$file
 done
