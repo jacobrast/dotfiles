@@ -1,4 +1,5 @@
 #!/bin/bash
+
 findDotFiles() {
     temp=$(sudo find . -name ".*")
     for item in $temp; do
@@ -7,11 +8,14 @@ findDotFiles() {
     done 
 }
 
-dir=~/dot 			  # dotfiles directory
-olddir=~/dotfiles_old             # old dotfiles backup directory
-files=".vimrc .bashrc .bash_aliases"
+dir=~/dot 			            # dotfiles directory
+olddir=~/dotfiles_old           # old dotfiles backup directory
+files=".vimrc .bashrc .bash_aliases .Xresources"
 
 # create dotfiles_old in homedir
+# Bug: Current implementation will move symlinks to $olddir
+# Todo: Make an implementation that will as user if they want to replace files
+# in $olddir
 echo "Creating $olddir for backup of any existing dotfiles in ~"
 mkdir -p $olddir
 echo "...done"
@@ -24,7 +28,7 @@ echo "...done"
 # move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks 
 for file in $files; do
     echo "Moving any existing dotfiles from ~ to $olddir"
-    mv ~/$file ~/dotfiles_old/
+    mv -i ~/$file ~/dotfiles_old/
     echo "Creating symlink to $file in home directory."
     ln -s $dir/$file ~/$file
 done
