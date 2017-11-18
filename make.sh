@@ -11,6 +11,7 @@ findDotFiles() {
 dir=~/dot 			            # dotfiles directory
 olddir=~/dotfiles_old           # old dotfiles backup directory
 files=".vimrc .bashrc .bash_aliases .Xresources"
+configs="i3"
 
 # create dotfiles_old in homedir
 # Bug: Current implementation will move symlinks to $olddir
@@ -31,4 +32,12 @@ for file in $files; do
     mv -i ~/$file ~/dotfiles_old/
     echo "Creating symlink to $file in home directory."
     ln -s $dir/$file ~/$file
+done
+
+# Do the same as above for ~/.config/ files and directories
+for file in $configs; do
+    echo "Moving ~/.config/ files or dirs from ~/.config/ to $~/.config/backup"
+    mv -i ~/.config/$file ~/.config/backup
+    echo "Creating symlinks to $file in ~/.config/"
+    ln -s $dir/$file ~/.config/$file
 done
