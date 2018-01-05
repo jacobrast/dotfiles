@@ -1,43 +1,39 @@
 #!/bin/bash
+# TODO: Automatically generate $FILES var. 
+# TODO: Ask user if they want to copy each dotfile
+# TODO: Add options for config files, ie .i3, .vim
+# TODO: Add a dry run option
 
-findDotFiles() {
-    temp=$(sudo find . -name ".*")
-    for item in $temp; do
-#Bit of a hack, just echo from 2nd character on, will remove ./ and . ..
-        echo ${item:2}
-    done 
-}
+# home directory.
+HOME="$( cd ~ && pwd )"
+# dotfiles directory. This should be current directory
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+# directory for old dotfiles. This will be at root
+BACKUPDIR="$HOME/dotfiles_backup"
+# All the files that shoud be backed up.
+FILES=".vimrc .bashrc .bash_aliases .Xresources"
+CONFIGS="i3"
 
-dir=~/dot 			            # dotfiles directory
-olddir=~/dotfiles_old           # old dotfiles backup directory
-files=".vimrc .bashrc .bash_aliases .Xresources"
-configs="i3"
-
-# create dotfiles_old in homedir
-# Bug: Current implementation will move symlinks to $olddir
-# Todo: Make an implementation that will as user if they want to replace files
-# in $olddir
-echo "Creating $olddir for backup of any existing dotfiles in ~"
-mkdir -p $olddir
-echo "...done"
-
-# change to the dotfiles directory
-echo "Changing to the $dir directory"
-cd $dir
-echo "...done"
-
-# move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks 
-for file in $files; do
-    echo "Moving any existing dotfiles from ~ to $olddir"
-    mv -i ~/$file ~/dotfiles_old/
-    echo "Creating symlink to $file in home directory."
-    ln -s $dir/$file ~/$file
+# TODO: Ask user if they want to backup a given dot file, and if they do, add a
+# version number.
+# Backup existing dot files, then remove old file and create a new symlink to
+# file in dotfiles dir
+echo "Creating $BACKUPDIR for backup of any existing dotfiles in home dir"
+mkdir -p $BACKUPDIR
+for file in $FILES; do
+    if [ -e $HOME/$file ] && [ ! -h $HOME/$file ]
+        then
+        echo "Backing up $file"
+        mv -i $HOME/$file $BACKUPDIR
+    fi
+    rm $HOME/$file
+    ln -s $DIR/$file $HOME/$file
 done
 
 # Do the same as above for ~/.config/ files and directories
-for file in $configs; do
+for file in $CONFIGS; do
     echo "Moving ~/.config/ files or dirs from ~/.config/ to $~/.config/backup"
     mv -i ~/.config/$file ~/.config/backup
     echo "Creating symlinks to $file in ~/.config/"
-    ln -s $dir/$file ~/.config/$file
+    ln -s $DIR/$file ~/.config/$file
 done
