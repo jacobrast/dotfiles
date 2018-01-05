@@ -13,6 +13,7 @@ Plugin 'git://github.com/tpope/vim-surround.git'
 Plugin 'git://github.com/ctrlpvim/ctrlp.vim.git'
 Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdtree'
+Plugin 'git://github.com/romainl/Apprentice.git'
 
 " ----------------------------------------------------------
 " All of your Plugins must be added before the following line
@@ -40,6 +41,8 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
+"Set and enable colorscheme
+syntax enable
 colorscheme apprentice 
 "source ~/.vim/cscope_maps.vim
 
