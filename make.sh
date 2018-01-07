@@ -29,6 +29,8 @@ if [[ $FIRST_INSTALL == "y" ]]
 then
     printf "Escalating to SU for to move to /usr/share folder \n"
     sudo cp $BACKGROUND /usr/share/backgrounds/
+    printf "Linking i3exit"
+    ln -s $DIR/i3/i3exit /usr/local/bin/
 fi
 
 # TODO: Ask user if they want to backup a given dot file, and if they do, add a
