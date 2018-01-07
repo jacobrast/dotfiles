@@ -2,39 +2,21 @@ Xft.dpi: 160
 URxvt.font: xft:monospace:size=12
 URxvt.scrollBar: false
 
-! special
-*.foreground:   #ecfbf7
-*.background:   #232110
-*.cursorColor:  #ecfbf7
-
-! black
-*.color0:       #080905
-*.color8:       #38352e
-
-! red
-*.color1:       #993449
-*.color9:       #e580c2
-
-! green
-*.color2:       #53997f
-*.color10:      #6ffa79
-
-! yellow
-*.color3:       #e48c35
-*.color11:      #ffeb92
-
-! blue
-*.color4:       #0b3796
-*.color12:      #4589f4
-
-! magenta
-*.color5:       #6e36b5
-*.color13:      #d89dff
-
-! cyan
-*.color6:       #6ba99e
-*.color14:      #00ebd8
-
-! white
-*.color7:       #ffffff
-*.color15:      #ffffff
+*.foreground: #BCBCBC
+*.background: #262626
+*.color0:     #1C1C1C
+*.color8:     #444444
+*.color1:     #AF5F5F
+*.color9:     #FF8700
+*.color2:     #5F875F
+*.color10:    #87AF87
+*.color3:     #87875F
+*.color11:    #FFFFAF
+*.color4:     #5F87AF
+*.color12:    #8FAFD7
+*.color5:     #5F5F87
+*.color13:    #8787AF
+*.color6:     #5F8787
+*.color14:    #5FAFAF
+*.color7:     #6C6C6C
+*.color15:    #FFFFFF
