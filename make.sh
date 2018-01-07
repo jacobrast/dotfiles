@@ -13,6 +13,23 @@ BACKUPDIR="$HOME/dotfiles_backup"
 # All the files that shoud be backed up.
 FILES=".vimrc .bashrc .bash_aliases .Xresources"
 CONFIGS="i3"
+FIRST_INSTALL=""
+BACKGROUND=NC27TKc.jpg
+
+while [[ $FIRST_INSTALL != "y" && $FIRST_INSTALL != "n" ]]
+do
+    read -p "Is this your first install? (y/n): " $FIRST_INSTALL
+    if [[ $FIRST_INSTALL != "y" && $FIRST_INSTALL != "n" ]]
+    then
+        printf "Please enter only 'y' or 'n'"
+    fi
+done
+
+if [[ $FIRST_INSTALL == "y" ]]
+then
+    printf "Escalating to SU for to move to /usr/share folder \n"
+    sudo cp $BACKGROUND /usr/share/backgrounds/
+fi
 
 # TODO: Ask user if they want to backup a given dot file, and if they do, add a
 # version number.
