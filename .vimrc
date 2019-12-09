@@ -7,13 +7,15 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
-
-"Plugin surround.vim
+" Plugin surround.vim
 Plugin 'git://github.com/tpope/vim-surround.git'
+" Plugin NERD Commenter
+Plugin 'git://github.com/scrooloose/nerdcommenter.git'
 Plugin 'git://github.com/ctrlpvim/ctrlp.vim.git'
 Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdtree'
 Plugin 'git://github.com/romainl/Apprentice.git'
+Plugin 'git://github.com/Valloric/YouCompleteMe.git'
 
 " ----------------------------------------------------------
 " All of your Plugins must be added before the following line
@@ -21,7 +23,7 @@ call vundle#end()            " required
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
-
+"
 " Brief help
 " :PluginList       - lists configured plugins
 " :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
@@ -44,7 +46,7 @@ let g:syntastic_check_on_wq = 0
 "Set and enable colorscheme
 syntax enable
 colorscheme apprentice 
-"source ~/.vim/cscope_maps.vim
+source ~/.vim/bundle/cscope_maps.vim
 
 "enable line numbers
 set number
@@ -61,12 +63,10 @@ au BufRead,BufNewFile Makefile* set noexpandtab
 set expandtab           " enter spaces when tab is pressed
 set textwidth=79       " break lines when line length increased
 set tabstop=4           " use 4 spaces to represent tab
-set softtabstop=4
+"set softtabstop=4
 set shiftwidth=4        " number of spaces to use for auto indent
-set autoindent          " copy indent from current line when starting a new line
-set smartindent
-set smarttab
-set expandtab
+"set autoindent          " copy indent from current line when starting a new line
+"set smarttab
 
 " make backspaces more powerfull
 set backspace=indent,eol,start
@@ -94,3 +94,9 @@ set noswapfile
 "Define a shortcut for commenting
 au BufRead,BufNewFile *.py nnoremap # 0i#?<Esc>
 au BufRead,BufNewFile *.c nnoremap # 0i//?<Esc>
+
+" Change learer key
+let mapleader = ','
+
+" YouCompleteMe support
+set encoding=utf-8
